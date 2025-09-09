@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>tugas html - viyola</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; max-width: 800px; margin: 30px auto; padding: 20px; line-height: 1.6; }
+    header { background: #f2f2f2; padding: 12px; border-radius: 8px; }
+    nav ul { list-style: none; padding: 0; display: flex; gap: 10px; }
+    nav a { text-decoration: none; padding: 6px 10px; border-radius: 6px; background: #e6e6e6; color: #333; }
+    .card { border: 1px solid #ddd; padding: 12px; border-radius: 8px; margin-top: 12px; }
+    footer { margin-top: 20px; font-size: 0.9rem; color: #666; }
+    button { cursor: pointer; padding: 8px 12px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <!-- ini buat tugas -->
+  <header>
+    <h1>halo! ini tugas html by viyola al mirah</h1>
+    <p>contoh sederhana halaman web yang mudah dimengerti</p>
+    <nav>
+      <ul>
+        <li><a href="#about">about</a></li>
+        <li><a href="#list">list</a></li>
+        <li><a href="#contact">pesan</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about" class="card">
+      <h2>tentang saya</h2>
+      <p>saya siswi dari SMKN 2 BALIKPAPAN di jurusan DKV, saya belajar coding dengan cara melihat tutorial</p>
+      <p>saya lahir di balikpapan tanggal 12 desember 2008</p>
+    </section>
+
+    <section id="list" class="card">
+      <h2>list</h2>
+      <p>list terurut (ordered) dan tidak terurut (unordered):</p>
+      <ol>
+        <li>pelajari tag dasar &lt;h1&gt; sampai &lt;h6&gt;</li>
+        <li>pelajari paragraf &lt;p&gt; dan link &lt;a&gt;</li>
+        <li>pelajari gambar &lt;img&gt; dan daftar &lt;ul&gt; / &lt;ol&gt;</li>
+      </ol>
+
+      <ul>
+        <li>praktikkan membuat form</li>
+        <li>belajar sedikit css</li>
+        <li>coba tambahkan javascript sederhana</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>tulis nama dan pesan</h2>
+      <form id="contactForm">
+        <label>nama:<br>
+          <input type="text" id="name" placeholder="isi nama kamu" required>
+        </label>
+        <br><br>
+        <label>pesan:<br>
+          <textarea id="message" rows="4" placeholder="tulis pesan" required></textarea>
+        </label>
+        <br><br>
+        <button type="submit">kirim</button>
+      </form>
+
+      <div id="result" style="margin-top:12px; display:none; border-top:1px dashed #ccc; padding-top:8px;"></div>
+    </section>
+
+    <section class="card">
+      <h2>hai, jangan lupa klik ya!</h2>
+      <p>klik tombol untuk melihat contoh interaksi sederhana.</p>
+      <button id="sayHiBtn">klik aku</button>
+      <p id="hiText" style="margin-top:8px;"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>selesai</p>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault(); // agar halaman tidak reload
+      const name = document.getElementById('name').value;
+      const message = document.getElementById('message').value;
+      const result = document.getElementById('result');
+      result.style.display = 'block';
+      result.innerHTML = '<strong>terima kasih, ' + escapeHtml(name) + '!</strong><p>pesanmu: ' + escapeHtml(message) + '</p>';
+    });
+
+    document.getElementById('sayHiBtn').addEventListener('click', function(){
+      document.getElementById('hiText').textContent = 'haii! semangat belajar html ✨';
+    });
+
+    function escapeHtml(text) {
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return String(text).replace(/[&<>\"']/g, function(m) { return map[m]; });
+    }
+  </script>
+</body>
+</html>
